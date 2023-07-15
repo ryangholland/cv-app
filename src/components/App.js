@@ -3,6 +3,7 @@ import uniqid from "uniqid";
 import "./App.css";
 import GeneralInfo from "./GeneralInfo";
 import Education from "./Education";
+import WorkExperience from "./WorkExperience";
 
 class App extends Component {
   constructor() {
@@ -12,8 +13,8 @@ class App extends Component {
       generalInfo: {
         name: "John Doe",
         address: "555 Street Ln.",
-        city: "Cityville",
-        state: "FL",
+        city: "New Fake City",
+        state: "NY",
         zip: "12345",
         phone: "(555) 555-5555",
         email: "john@doe.com",
@@ -42,7 +43,54 @@ class App extends Component {
           ],
         },
       ],
-      workExperience: [{}],
+      workExperience: [
+        {
+          id: uniqid(),
+          name: "Fake Workplace",
+          city: "Notrealshire",
+          state: "FL",
+          title: "Grunt",
+          startDate: "February 2013",
+          endDate: "June 2016",
+          extraInfo: [
+            {
+              id: uniqid(),
+              text: "Slaved away for the boss",
+            },
+            {
+              id: uniqid(),
+              text: "Did work-related things",
+            },
+            {
+              id: uniqid(),
+              text: "Three-time employee of the month",
+            },
+          ],
+        },
+        {
+          id: uniqid(),
+          name: "Another Fake Workplace",
+          city: "New Fake City",
+          state: "NY",
+          title: "CEO",
+          startDate: "July 2016",
+          endDate: "Present",
+          extraInfo: [
+            {
+              id: uniqid(),
+              text: "Made difficult fake decisions",
+            },
+            {
+              id: uniqid(),
+              text: "Raised profits by an arbitrary percent",
+            },
+            {
+              id: uniqid(),
+              text: "Led the merger and acquistion of Fake Workplace",
+            },
+          ],
+        },
+      ],
     };
   }
 
@@ -60,52 +108,9 @@ class App extends Component {
         <hr />
         <div>
           <h2>Work Experience:</h2>
-          <div>
-            <div>
-              <h3>American Eagle</h3>
-              <p>City, State</p>
-            </div>
-            <div>
-              <h4>Sales Associate</h4>
-              <p>July 2009 - Present</p>
-            </div>
-            <ul>
-              <li>
-                Collaborated with the store merchandiser creating displays to
-                attract clientele
-              </li>
-              <li>
-                Use trend awareness to assist customers in shopping experience
-              </li>
-              <li>
-                Thoroughly scan every piece of merchandise for inventory
-                controll
-              </li>
-            </ul>
-          </div>
-          <div>
-            <div>
-              <h3>Wendy's</h3>
-              <p>City, State</p>
-            </div>
-            <div>
-              <h4>Sales Associate</h4>
-              <p>July 2004 - July 2009</p>
-            </div>
-            <ul>
-              <li>
-                Collaborated with the store merchandiser creating displays to
-                attract clientele
-              </li>
-              <li>
-                Use trend awareness to assist customers in shopping experience
-              </li>
-              <li>
-                Thoroughly scan every piece of merchandise for inventory
-                controll
-              </li>
-            </ul>
-          </div>
+          {this.state.workExperience.map((workplace) => {
+            return <WorkExperience key={workplace.id} info={workplace} />;
+          })}
         </div>
       </>
     );
